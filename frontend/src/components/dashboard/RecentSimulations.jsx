@@ -1,0 +1,9 @@
+import { ArrowUpRight, MoreHorizontal } from "lucide-react";
+import { Link } from "react-router-dom";
+import Card from "../common/Card";
+import Badge from "../common/Badge";
+import simulations from "../../data/mockSimulations";
+
+const variant = { Completed: "success", Running: "info", Queued: "warning", Failed: "danger" };
+function RecentSimulations() { return <Card title="Recent simulations" action={<Link to="/simulations" className="flex items-center gap-1 text-xs font-semibold text-indigo-600">View all <ArrowUpRight size={14} /></Link>}><div className="overflow-x-auto"><table className="w-full min-w-[720px] text-left"><thead><tr className="border-b border-slate-100 text-[10px] uppercase tracking-wider text-slate-400"><th className="pb-3 font-semibold">Project</th><th className="pb-3 font-semibold">Persona</th><th className="pb-3 font-semibold">Issues</th><th className="pb-3 font-semibold">UX score</th><th className="pb-3 font-semibold">Status</th><th className="pb-3 font-semibold">Started</th><th /></tr></thead><tbody className="divide-y divide-slate-100">{simulations.slice(0, 5).map((item) => <tr key={item.id} className="text-xs"><td className="py-4 font-semibold text-slate-800">{item.project}</td><td className="py-4 text-slate-500">{item.personas.join(", ")}</td><td className="py-4 font-semibold text-slate-700">{item.issues || "-"}</td><td className="py-4 font-bold text-slate-800">{item.score ? `${item.score}%` : "-"}</td><td className="py-4"><Badge variant={variant[item.status]} dot>{item.status}</Badge></td><td className="py-4 text-slate-500">{item.started}</td><td className="py-4 text-right"><Link to={`/simulations/${item.id}`} className="rounded-md p-1 text-slate-400 hover:bg-slate-100 hover:text-slate-700"><MoreHorizontal size={16} /></Link></td></tr>)}</tbody></table></div></Card>; }
+export default RecentSimulations;

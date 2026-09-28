@@ -1,0 +1,4 @@
+import { Plus, SlidersHorizontal } from "lucide-react";
+import Button from "../common/Button";
+function ProjectHeader({ search, setSearch }) { return <div className="mb-6 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between"><div><p className="eyebrow">Workspace</p><h1 className="mt-2 text-2xl font-bold text-slate-950">Projects</h1><p className="mt-1 text-sm text-slate-500">Manage websites and applications being tested.</p></div><div className="flex flex-col gap-2 sm:flex-row"><div className="flex items-center rounded-lg border border-slate-200 bg-white px-3"><input value={search} onChange={(event) => setSearch(event.target.value)} className="h-10 w-full bg-transparent text-xs outline-none sm:w-48" placeholder="Search projects" /></div><Button variant="secondary" icon={SlidersHorizontal}>Filter</Button><Button icon={Plus}>New Project</Button></div></div>; }
+export default ProjectHeader;

@@ -1,0 +1,9 @@
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area } from "recharts";
+
+const data = [{ name: "Sep 01", issues: 38 }, { name: "Sep 05", issues: 51 }, { name: "Sep 09", issues: 42 }, { name: "Sep 13", issues: 68 }, { name: "Sep 17", issues: 57 }, { name: "Sep 21", issues: 82 }];
+
+function SimulationChart() {
+  return <div className="surface p-5"><div className="mb-5 flex items-start justify-between"><div><h3 className="text-sm font-bold text-slate-900">Issues detected over time</h3><p className="mt-1 text-xs text-slate-400">Findings discovered across your simulations</p></div><select className="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-600 outline-none"><option>Last 30 days</option><option>Last 90 days</option></select></div><div className="h-[260px]"><ResponsiveContainer width="100%" height="100%"><AreaChart data={data} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}><defs><linearGradient id="issueFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#6366f1" stopOpacity={0.16} /><stop offset="100%" stopColor="#6366f1" stopOpacity={0} /></linearGradient></defs><CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" /><XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 11, fill: "#94a3b8" }} /><YAxis axisLine={false} tickLine={false} tick={{ fontSize: 11, fill: "#94a3b8" }} /><Tooltip /><Area type="monotone" dataKey="issues" stroke="#6366f1" fill="url(#issueFill)" strokeWidth={2.5} /><Line type="monotone" dataKey="issues" stroke="#6366f1" strokeWidth={2.5} dot={{ r: 3 }} activeDot={{ r: 5 }} /></AreaChart></ResponsiveContainer></div></div>;
+}
+
+export default SimulationChart;

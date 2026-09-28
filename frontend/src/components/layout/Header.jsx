@@ -1,0 +1,13 @@
+import { Bell, Menu, Plus, Search, ChevronDown } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
+import { useState } from "react";
+import Button from "../common/Button";
+
+function Header({ onMenu }) {
+  const [menu, setMenu] = useState(false);
+  const location = useLocation();
+  const title = location.pathname.includes("projects") ? "Projects" : location.pathname.includes("simulation") ? "Simulations" : location.pathname.includes("persona") ? "Personas" : location.pathname.includes("settings") ? "Settings" : "Workspace";
+  return <header className="sticky top-0 z-30 flex h-[72px] items-center justify-between border-b border-slate-200 bg-white/95 px-4 backdrop-blur sm:px-6 lg:px-8"><div className="flex items-center gap-3"><button onClick={onMenu} className="rounded-lg p-2 text-slate-500 hover:bg-slate-100 lg:hidden" aria-label="Open navigation"><Menu size={20} /></button><span className="hidden text-sm font-semibold text-slate-500 sm:inline">{title}</span><div className="relative hidden md:block md:w-[280px] lg:ml-6"><Search className="absolute left-3 top-2.5 text-slate-400" size={16} /><input className="field h-9 pl-9 text-xs" placeholder="Search projects, simulations..." /></div></div><div className="relative flex items-center gap-2"><Link to="/simulations/create"><Button size="sm" icon={Plus}>New Simulation</Button></Link><button className="relative rounded-lg p-2.5 text-slate-500 hover:bg-slate-100" aria-label="Notifications"><Bell size={18} /><span className="absolute right-2 top-2 h-1.5 w-1.5 rounded-full bg-indigo-600" /></button><button onClick={() => setMenu(!menu)} className="flex items-center gap-2 rounded-lg p-1.5 hover:bg-slate-50"><span className="flex h-8 w-8 items-center justify-center rounded-full bg-slate-900 text-[10px] font-bold text-white">AD</span><span className="hidden text-left sm:block"><b className="block text-xs text-slate-800">Project Admin</b><small className="block text-[10px] text-slate-400">Administrator</small></span><ChevronDown size={14} className="hidden text-slate-400 sm:block" /></button>{menu && <div className="absolute right-0 top-12 w-40 rounded-lg border border-slate-200 bg-white p-1 shadow-xl"><Link className="block rounded-md px-3 py-2 text-xs text-slate-600 hover:bg-slate-50" to="/settings">Account settings</Link><Link className="block rounded-md px-3 py-2 text-xs text-slate-600 hover:bg-slate-50" to="/login">Sign out</Link></div>}</div></header>;
+}
+
+export default Header;

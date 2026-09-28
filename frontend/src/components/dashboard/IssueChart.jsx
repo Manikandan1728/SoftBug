@@ -1,0 +1,5 @@
+import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
+import Card from "../common/Card";
+const data = [{ name: "Critical", value: 24, color: "#e11d48" }, { name: "Major", value: 86, color: "#f59e0b" }, { name: "Minor", value: 142, color: "#6366f1" }, { name: "Info", value: 90, color: "#94a3b8" }];
+function IssueChart() { return <Card title="Issue severity distribution"><div className="flex items-center gap-5"><div className="h-40 w-40"><ResponsiveContainer><PieChart><Pie data={data} dataKey="value" innerRadius={48} outerRadius={68} paddingAngle={3}>{data.map((item) => <Cell key={item.name} fill={item.color} />)}</Pie><Tooltip /></PieChart></ResponsiveContainer></div><div className="flex-1 space-y-3">{data.map((item) => <div className="flex items-center justify-between text-xs" key={item.name}><span className="flex items-center gap-2 text-slate-500"><i className="h-2 w-2 rounded-full" style={{ background: item.color }} />{item.name}</span><b className="text-slate-800">{item.value}</b></div>)}</div></div></Card>; }
+export default IssueChart;
